@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony Calculator{% endblock %}
+
+{% block body %}
+    <style>
+        .wrapper {
+            margin: 1em auto;
+            width: 95%;
+        }
+
+        table td button, table td input {
+            border: solid 1px grey;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        table th input {
+            border: solid 1px grey;
+            height: 50px;
+            text-align: right;
+            background-color: lightgrey;
+            padding-right: 20px;
+        }
+    </style>
+
+    <form method="POST">
+        <div class="wrapper">
+            <h1>Calculator</h1>
+            {% if showResult %}
+                <p>Result Is: {{ result }}</p>
+            {% endif %}
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <th colspan="4"><input type="input" id="calculation" name="calculation" value=""></th>
+                </thead>
+                <tr>
+                    <td scope="col"><button type="button" class="value" value="1">1</button></td>
+                    <td scope="col"><button type="button" class="value" value="2">2</button></td>
+                    <td scope="col"><button type="button" class="value" value="3">3</button></td>
+                    <td scope="col"><button type="button" class="operand" value="{{ operand_add }}" disabled>+</button></td>
+                </tr>
+                <tr>
+                    <td scope="col"><button type="button" class="value" value="4">4</button></td>
+                    <td scope="col"><button type="button" class="value" value="5">5</button></td>
+                    <td scope="col"><button type="button" class="value" value="6">6</button></td>
+                    <td scope="col"><button type="button" class="operand" value="{{ operand_subtract }}" disabled>-</button></td>
+                </tr>
+                <tr>
+                    <td scope="col"><button type="button" class="value" value="7">7</button></td>
+                    <td scope="col"><button type="button" class="value" value="8">8</button></td>
+                    <td scope="col"><button type="button" class="value" value="9">9</button></td>
+                    <td scope="col"><button type="button" class="operand" value="{{ operand_multiply }}" disabled>*</button></td>
+                </tr>
+                <tr>
+                    <td scope="col"><button type="button" class="operand" value="{{ operand_divide }}" disabled>/</button></td>
+                    <td scope="col"><button type="button" class="value" value="0">0</button></td>
+                    <td scope="col"><button type="button" class="value" value=".">.</button></td>
+                    <td scope="col"><b><input type="submit" class="result" value="=" disabled /></b></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><button type="button" class="clear" value="CLEAR" disabled>CLEAR</button></td>
+                </tr>
+            </table>
+        </div>
+        <input name="to_calculate" id="to_calculate" type="hidden" value="" />
+        <input name="value_one" id="value_one" type="hidden" value="" />
+        <input name="value_two" id="value_two" type="hidden" value="" />
+        <input name="operand" id="operand" type="hidden" value="" />
+    </form>
+{% endblock %}
