@@ -34,12 +34,15 @@ final class CalculatorRequestTest extends TestCase
 
         $calculatorRequest = new CalculatorRequest($request);
 
+        $exceptionRaised = false;
         try {
             $calculatorRequest->validateRequest();
         }
         catch (\Exception $e) {
             $this->assertEquals(CalculatorRequest::MSG_VALUEONE_REQUIRED, $e->getMessage());
+            $exceptionRaised = true;
         }
+        $this->assertTrue($exceptionRaised);
     }
 
     public function testRequiredValueTwo(): void
@@ -55,12 +58,15 @@ final class CalculatorRequestTest extends TestCase
 
         $calculatorRequest = new CalculatorRequest($request);
 
+        $exceptionRaised = false;
         try {
             $calculatorRequest->validateRequest();
         }
         catch (\Exception $e) {
             $this->assertEquals(CalculatorRequest::MSG_VALUETWO_REQUIRED, $e->getMessage());
+            $exceptionRaised = true;
         }
+        $this->assertTrue($exceptionRaised);
     }
 
     public function testRequiredOperand(): void
@@ -76,12 +82,15 @@ final class CalculatorRequestTest extends TestCase
 
         $calculatorRequest = new CalculatorRequest($request);
 
+        $exceptionRaised = false;
         try {
             $calculatorRequest->validateRequest();
         }
         catch (\Exception $e) {
             $this->assertEquals(CalculatorRequest::MSG_OPERAND_REQUIRED, $e->getMessage());
+            $exceptionRaised = true;
         }
+        $this->assertTrue($exceptionRaised);
     }
 
     public function testInvalidOperand(): void
@@ -97,12 +106,15 @@ final class CalculatorRequestTest extends TestCase
 
         $calculatorRequest = new CalculatorRequest($request);
 
+        $exceptionRaised = false;
         try {
             $calculatorRequest->validateRequest();
         }
         catch (\Exception $e) {
             $this->assertEquals(CalculatorRequest::MSG_OPERAND_INVALID, $e->getMessage());
+            $exceptionRaised = true;
         }
+        $this->assertTrue($exceptionRaised);
     }
 
 }
